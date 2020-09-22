@@ -56,6 +56,12 @@ namespace OOPFirstApp
             SortBubble(data);
 
             PrintArray(data, "Отсортированный массив");
+
+            Console.WriteLine("Время запуска программы было " + Program.StartTime);
+            var now = DateTime.Now;
+            Console.WriteLine("Текущее время " + now);
+            Console.WriteLine("Прошло " + (now - Program.StartTime));
+
         }
 
         static Func<double, double> GetAdder(int y)
