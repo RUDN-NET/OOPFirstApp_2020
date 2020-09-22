@@ -13,50 +13,83 @@ namespace OOPFirstApp
 
             //ComplexTests.Start();
 
-            Gun gun1 = new Gun();
-            Gun2 gun2 = new Gun2(5, '#');
-            //gun2.ShotSymbol = '*';
-
-            //gun2.SetAmmoCount(-5);
-            gun1.AmmoCount = 5;
-            //gun2.AmmoCount = -6;
-            gun1.ShotSymbol = '-';
-
-            Console.WriteLine("В первом ружье {0} патронов", gun1.GetAmmoCount());
-            gun1.SetAmmoCount(10);
-            Console.WriteLine("В первом ружье {0} патронов", gun1.GetAmmoCount());
-
-            Console.WriteLine("Первое ружьё");
-            for (var i = 0; i < 7; i++)
-                gun1.Shot();
-            Console.WriteLine();
+            //Gun gun1 = new Gun();
+            //Gun2 gun2 = new Gun2(5, '#');
+            ////gun2.ShotSymbol = '*';
 
 
-            Console.WriteLine("Второе ружьё");
-            for (var i = 0; i < 7; i++)
-                gun2.Shot();
-            Console.WriteLine();
 
-            gun1.LoadAmmo(2);
-            gun2.LoadAmmo(7);
+            ////gun2.SetAmmoCount(-5);
+            //gun1.AmmoCount = 5;
+            ////gun2.AmmoCount = -6;
+            //gun1.ShotSymbol = '-';
 
-            Console.WriteLine("Первое ружьё");
-            for (var i = 0; i < 7; i++)
-                gun1.Shot();
-            Console.WriteLine();
+            //Console.WriteLine("В первом ружье {0} патронов", gun1.GetAmmoCount());
+            //gun1.SetAmmoCount(10);
+            //Console.WriteLine("В первом ружье {0} патронов", gun1.GetAmmoCount());
+
+            //Console.WriteLine("Первое ружьё");
+            //for (var i = 0; i < 7; i++)
+            //    gun1.Shot();
+            //Console.WriteLine();
 
 
-            Console.WriteLine("Второе ружьё");
-            for (var i = 0; i < 7; i++)
-                gun2.Shot();
-            Console.WriteLine();
+            //Console.WriteLine("Второе ружьё");
+            //for (var i = 0; i < 7; i++)
+            //    gun2.Shot();
+            //Console.WriteLine();
+
+            //gun1.LoadAmmo(2);
+            //gun2.LoadAmmo(7);
+
+            //Console.WriteLine("Первое ружьё");
+            //for (var i = 0; i < 7; i++)
+            //    gun1.Shot();
+            //Console.WriteLine();
+
+
+            //Console.WriteLine("Второе ружьё");
+            //for (var i = 0; i < 7; i++)
+            //    gun2.Shot();
+            //Console.WriteLine();
+
+            //Gun gun = new Gun(5);
+
+            //for (var i = 0; i < 7; i++)
+            //    gun.Shot();
+
+            //gun = new Gun2(7, '*');
+            //for (var i = 0; i < 7; i++)
+            //    gun.Shot();
+
+            //gun = new Gun3(8, '#');
+            //for (var i = 0; i < 7; i++)
+            //    gun.Shot();
+
+            ShotFromWeapon(new Gun());
+            ShotFromWeapon(new Gun2(7, '*'));
+            ShotFromWeapon(new Gun3(8, '#'));
+
+            ShotFromWeapon(new PistolWithUnlimitedAmmo());
+            ShotFromWeapon(new RifleGunWithUnlimitedAmmo());
 
             Console.WriteLine("Нажмите Enter для выхода...");
             Console.ReadLine(); // В конце для предотвращения закрытия окна
         }
+
+        static void ShotFromWeapon(Weapon weapon, int count = 7)
+        {
+            for (var i = 0; i < count; i++)
+                weapon.Shot();
+        }
     }
 
-    class Gun
+    abstract class Weapon
+    {
+        public abstract void Shot();
+    }
+
+    class Gun : Weapon
     {
         protected int _AmmoCount;
         protected char _ShotSymbol = '|';
@@ -121,7 +154,7 @@ namespace OOPFirstApp
                 _AmmoCount, _ShotSymbol);
         }
 
-        public void Shot()
+        public override void Shot()
         {
             if (_AmmoCount > 0)
             {
@@ -148,7 +181,7 @@ namespace OOPFirstApp
             Console.WriteLine("\tсоздан второй ствол для ружья");
         }
 
-        public void Shot()
+        public override void Shot()
         {
             for (var i = 0; i < 2; i++)
                 if (_AmmoCount > 0)
@@ -163,6 +196,51 @@ namespace OOPFirstApp
                 }
 
             Console.WriteLine();
+        }
+    }
+
+    class Gun3 : Gun
+    {
+        public Gun3(int count, char symbol)
+            : base(count, symbol) // Вызываем конструктор базового класса и передаём ему нужные параметры
+        {
+            //_AmmoCount = count;
+            //_ShotSymbol = symbol;
+            Console.WriteLine("\tсоздан второй и третий ствол для ружья");
+        }
+
+        public override void Shot()
+        {
+            for (var i = 0; i < 3; i++)
+                if (_AmmoCount > 0)
+                {
+                    Console.Write(_ShotSymbol);
+                    _AmmoCount--;
+                }
+                else
+                {
+                    Console.WriteLine("Патроны закончились");
+                    return;
+                }
+
+            Console.WriteLine();
+        }
+    }
+
+    class PistolWithUnlimitedAmmo : Weapon
+    {
+        public override void Shot()
+        {
+            Console.WriteLine('-');
+        }
+    }
+
+    class RifleGunWithUnlimitedAmmo : Weapon
+    {
+        public override void Shot()
+        {
+            for (var i = 0; i < 7; i++)
+                Console.WriteLine('=');
         }
     }
 }
