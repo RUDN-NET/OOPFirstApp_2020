@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
@@ -18,14 +19,16 @@ namespace OOPFirstApp.Students
             if (!reader.EndOfStream)
                 reader.ReadLine();
 
-            var max_student_count = 100;
-            var students = new Student[max_student_count];
-            var students_count = 0;
+            //var max_student_count = 100;
+            //var students = new Student[max_student_count];
+            //var students_count = 0;
+
+            var students_list = new List<Student>();
 
             while (!reader.EndOfStream)
             {
                 var str = reader.ReadLine();
-                Console.WriteLine(str);
+                //Console.WriteLine(str);
 
                 const char separator = ';';
                 var values = str.Split(separator);
@@ -48,18 +51,23 @@ namespace OOPFirstApp.Students
                 //student.Rating = double.Parse(values[5], CultureInfo.GetCultureInfo("en"));
                 student.GroupId = int.Parse(values[6]);
 
-                //students[students_count++] = student;
-                students[students_count] = student;
-                students_count++;
+                students_list.Add(student);
 
-                if (students_count == max_student_count)
-                {
-                    max_student_count *= 2;
-                    Array.Resize(ref students, max_student_count);
-                }
+                //students[students_count++] = student;
+                //students[students_count] = student;
+                //students_count++;
+
+                //if (students_count == max_student_count)
+                //{
+                //    max_student_count *= 2;
+                //    Array.Resize(ref students, max_student_count);
+                //}
             }
 
             data_stream.Close();
+
+            foreach (var student in students_list)
+                Console.WriteLine(student);
         }
     }
 }
