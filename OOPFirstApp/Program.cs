@@ -23,13 +23,18 @@ namespace OOPFirstApp
                 data[i] = rnd.Next(0, 101);
             }
 
-            Console.WriteLine("Исходный массив");
-            foreach (var value in data)
-                Console.WriteLine(value);
-            Console.WriteLine();
+            PrintArray(data, "Исходный массив");
 
             Console.WriteLine("Нажмите Enter для выхода...");
             Console.ReadLine(); // В конце для предотвращения закрытия окна
+        }
+
+        static void PrintArray(int[] Data, string Header)
+        {
+            Console.WriteLine(Header);
+            foreach (var value in Data)
+                Console.WriteLine(value);
+            Console.WriteLine();
         }
     }
 }
