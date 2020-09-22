@@ -6,7 +6,7 @@ namespace OOPFirstApp
     {
         static void Main(string[] args)
         {
-            const int array_length = 50;
+            const int array_length = 10;
 
             var data = new int[array_length];
 
@@ -25,10 +25,53 @@ namespace OOPFirstApp
 
             PrintArray(data, "Исходный массив");
 
+            //Array.Sort(data);
+            SortBubble(data);
+
+            PrintArray(data, "Отсортированный массив");
+
             Console.WriteLine("Нажмите Enter для выхода...");
             Console.ReadLine(); // В конце для предотвращения закрытия окна
         }
 
+        /// <summary>Сортировка массива методом пузырька</summary>
+        /// <param name="Data">Сортируемый массив</param>
+        static void SortBubble(int[] Data)
+        {
+            bool inversion_exists;
+
+            do
+            {
+                inversion_exists = false;
+
+                for (var i = 0; i < Data.Length - 1; i++)
+                {
+                    if (Data[i] > Data[i + 1]) // Условие проверки для сортировки по возрастанию
+                    //if (Data[i] < Data[i + 1]) // Условие проверки для сортировки по убыванию
+                    {
+                        inversion_exists = true;
+
+                        //var tmp = Data[i];
+                        //Data[i] = Data[i + 1];
+                        //Data[i + 1] = tmp;
+                        Swap(ref Data[i], ref Data[i + 1]);
+                    }
+                }
+            }
+            while (inversion_exists);
+        }
+
+        /// <summary>Обмен значений переменных местами</summary>
+        static void Swap(ref int x, ref int y)
+        {
+            var tmp = x;
+            x = y;
+            y = tmp;
+        }
+
+        /// <summary>Печать элементов массива на консоль с заголовком</summary>
+        /// <param name="Data">Печатаемый массив</param>
+        /// <param name="Header">Текст, выводимый перед началом печати</param>
         static void PrintArray(int[] Data, string Header)
         {
             Console.WriteLine(Header);
