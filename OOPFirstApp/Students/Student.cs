@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OOPFirstApp.Students
 {
@@ -30,5 +28,18 @@ namespace OOPFirstApp.Students
         public double Rating { get; set; }
 
         public int GroupId { get; set; }
+
+        public override string ToString()
+        {
+            // Конкатинация строк - очень медленная
+            //return "[Id:" + Id + "] " + Surname + " " + Name + " " + Patronymic + " (" + Birthday + ")" + "[GroupId:" + GroupId + "] - " + Rating;
+            //return string.Format( // Форматирование строк
+            //    "[Id:{0}] {1} {2} {3} ({4})[GroupId:{5}] - {6}",
+            //    Id, Surname, Name, Patronymic, Birthday, GroupId, Rating);
+            //return $"[Id:{Id}] {Surname} {Name} {Patronymic} ({Birthday})[GroupId:{GroupId}] - {Rating}";
+            //return $"[Id:{Id}] {Surname} {Name} {Patronymic} ({Birthday.ToShortDateString()})[GroupId:{GroupId}] - {Rating}";
+            //return $"[Id:{Id}] {Surname} {Name} {Patronymic} ({Birthday:dd.MM.yy})[GroupId:{GroupId}] - {Rating}";
+            return $"[Id:{Id}] {Surname} {Name} {Patronymic} ({Birthday:dd.MMMM.yy})[GroupId:{GroupId}] - {Rating}";
+        }
     }
 }
