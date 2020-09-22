@@ -8,12 +8,32 @@ namespace OOPFirstApp
 
         static void Main(string[] args)
         {
-            StartTime = DateTime.Now;
+            //StartTime = DateTime.Now;
 
-            Arrays.Start();
+            //Arrays.Start();
+
+            Complex z = new Complex();
+
+            z.Re = 5;
+            z.Im = 7;
+
+            Console.WriteLine("z = {0}+i{1}", z.Re, z.Im);
+            Console.WriteLine();
+            z.Print();
 
             Console.WriteLine("Нажмите Enter для выхода...");
             Console.ReadLine(); // В конце для предотвращения закрытия окна
+        }
+    }
+
+    class Complex
+    {
+        public double Re;
+        public double Im;
+
+        public void Print()
+        {
+            Console.WriteLine("z = {0}+i{1}", Re, Im);
         }
     }
 }
