@@ -17,7 +17,10 @@ namespace OOPFirstApp
             Gun gun2 = new Gun(5, '#');
             //gun2.ShotSymbol = '*';
 
-            gun2.SetAmmoCount(-5);
+            //gun2.SetAmmoCount(-5);
+            gun1.AmmoCount = 5;
+            //gun2.AmmoCount = -6;
+            gun1.ShotSymbol = '-';
 
             Console.WriteLine("В первом ружье {0} патронов", gun1.GetAmmoCount());
             gun1.SetAmmoCount(10);
@@ -65,12 +68,39 @@ namespace OOPFirstApp
 
         public void SetAmmoCount(int value)
         {
-            if(value < 0)
+            if (value < 0)
                 throw new ArgumentOutOfRangeException("value", value, "Число патронов не может быть меньше 0");
 
             _AmmoCount = value;
         }
-        
+
+        public int AmmoCount
+        {
+            get
+            {
+                return _AmmoCount;
+            }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("value", value, "Число патронов не может быть меньше 0");
+
+                _AmmoCount = value;
+            }
+        }
+
+        public char ShotSymbol
+        {
+            get
+            {
+                return _ShotSymbol;
+            }
+            set
+            {
+                _ShotSymbol = value;
+            }
+        }
+
         public Gun()
         {
             _AmmoCount = 3;
