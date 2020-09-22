@@ -10,6 +10,23 @@ namespace OOPFirstApp
 
             var data = new int[array_length];
 
+            var adder_5 = GetAdder(7);
+
+            var result = adder_5(5);
+
+            Func<double, double>[] functions = new Func<double, double>[array_length];
+
+            //for (var i = 0; i < array_length; i++)
+            //{
+            //    functions[i] = GetAdder(i + 1);
+            //}
+
+            //var func_result = new double[array_length];
+            //for (var i = 0; i < array_length; i++)
+            //{
+            //    func_result[i] = functions[i](5);
+            //}
+
             var rnd = new Random();
             for (var i = 0; i < array_length; i++)
             {
@@ -21,6 +38,14 @@ namespace OOPFirstApp
                 //var int3_random = rnd.Next(-50,51); // -50..50
 
                 data[i] = rnd.Next(0, 101);
+
+                functions[i] = GetAdder(rnd.Next(5, 11));
+            }
+
+            var func_result = new double[array_length];
+            for (var i = 0; i < array_length; i++)
+            {
+                func_result[i] = functions[i](5);
             }
 
             PrintArray(data, "Исходный массив");
@@ -32,6 +57,11 @@ namespace OOPFirstApp
 
             Console.WriteLine("Нажмите Enter для выхода...");
             Console.ReadLine(); // В конце для предотвращения закрытия окна
+        }
+
+        static Func<double, double> GetAdder(int y)
+        {
+            return x => x + y;
         }
 
         /// <summary>Сортировка массива методом пузырька</summary>
