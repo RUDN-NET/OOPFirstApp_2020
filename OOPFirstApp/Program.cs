@@ -15,6 +15,8 @@ namespace OOPFirstApp
 
             //Weapons.WeaponsTests.Start();
 
+            Students.StudentManager.Process();
+
             Console.WriteLine("Нажмите Enter для выхода...");
             Console.ReadLine(); // В конце для предотвращения закрытия окна
         }
