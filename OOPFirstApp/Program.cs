@@ -29,6 +29,9 @@ namespace OOPFirstApp
             z1.Print();
             z2.Print();
 
+            Console.WriteLine("|z| = " + z.GetAbs());
+            Console.WriteLine("arg(z) = " + z.GetArg() * 180 / Math.PI);
+
             Console.WriteLine("Нажмите Enter для выхода...");
             Console.ReadLine(); // В конце для предотвращения закрытия окна
         }
@@ -51,6 +54,16 @@ namespace OOPFirstApp
             z.Im = Im + y.Im;
 
             return z;
+        }
+
+        public double GetAbs()
+        {
+            return Math.Sqrt(Re * Re + Im * Im);
+        }
+
+        public double GetArg()
+        {
+            return Math.Atan2(Im, Re);
         }
 
         public static Complex operator +(Complex x, Complex y)
